@@ -3,7 +3,7 @@ package com.example.haikel.tpsqlite;
 public class Contact {
 
     private int id;
-    private String nom, tel;
+    private String name, tel;
 
     public Contact() { }
 
@@ -15,12 +15,12 @@ public class Contact {
         this.id = id;
     }
 
-    public String getNom() {
-        return nom;
+    public String getName() {
+        return name;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getTel() {
@@ -33,6 +33,6 @@ public class Contact {
 
     @Override
     public String toString() {
-        return id + " " + nom + " " + tel;
+        return id + " " + name + " " + tel;
     }
 }

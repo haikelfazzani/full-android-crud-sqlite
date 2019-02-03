@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +55,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public long addContact(Contact contact) {
         myDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(KEY_NAME, contact.getNom());
+        contentValues.put(KEY_NAME, contact.getName());
         contentValues.put(KEY_TEL, contact.getTel());
         return myDB.insert(TABLE_NAME, null, contentValues);
     }
@@ -70,7 +71,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             while(cursor.moveToNext()) {
                 Contact contact = new Contact();
                 contact.setId(Integer.parseInt(cursor.getString(0)));
-                contact.setNom(cursor.getString(1));
+                contact.setName(cursor.getString(1));
                 contact.setTel(cursor.getString(2));
                 contactList.add(contact);
             }
@@ -80,10 +81,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public void updateContact(Contact contact) {
-
+        myDB = this.getWritableDatabase();
+        String sql = "UPDATE "+TABLE_NAME+" SET "+KEY_TEL +" = ? WHERE " +KEY_NAME +" = ?";
+        Cursor cursor = myDB.rawQuery(sql,
+                new String[]{contact.getTel(), contact.getName()});
+        cursor.moveToFirst();
     }
 
-    public void deleteContact(int id) {
-
+    public void deleteContact(String name) {
+        myDB = this.getWritableDatabase();
+        String sql = "DELETE FROM "+TABLE_NAME+" WHERE "+KEY_NAME + " = ?";
+        Cursor cursor = myDB.rawQuery(sql, new String[]{name});
+        cursor.moveToFirst();
+        cursor.close();
     }
 }
