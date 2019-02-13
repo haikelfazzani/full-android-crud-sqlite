@@ -22,7 +22,7 @@ startActivity(myIntent);
 </code></pre>
 
 <h4>Acitvity 2</h4>
-<code><pre>myContact = (Contact) getIntent().getSerializableExtra("contact");
+<pre><code>myContact = (Contact) getIntent().getSerializableExtra("contact");
 
 Contact myContact = gson.fromJson(getIntent().getStringExtra("contact"),Contact.class);
 </code></pre>
