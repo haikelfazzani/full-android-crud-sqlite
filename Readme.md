@@ -5,10 +5,10 @@
 	<img src="https://i.ibb.co/XD0W65R/and1.png" alt="and1" border="0">
 </div>
 
-<h4>How to pass an object from activity to another</h4>
+<h3>How to pass an object from activity to another</h3>
 
-<p>Acitvity 1</p>
-<p>
+<h4>Acitvity 1</h4>
+<pre><code>
 Intent myIntent = new Intent(MainActivty1.this, MainActivty2.class);
 myIntent.putExtra("contact", Contact);
 startActivity(myIntent);
@@ -19,10 +19,10 @@ private Gson gson = new Gson();
 Intent myIntent = new Intent(MainActivty1.this, MainActivty2.class);
 myIntent.putExtra("contact", gson.toJson(contact));
 startActivity(myIntent);
-</p>
+</code></pre>
 
-<p>Acitvity 2</p>
-<p>myContact = (Contact) getIntent().getSerializableExtra("contact");
+<h4>Acitvity 2</h4>
+<code><pre>myContact = (Contact) getIntent().getSerializableExtra("contact");
 
 Contact myContact = gson.fromJson(getIntent().getStringExtra("contact"),Contact.class);
-</p>
+</code></pre>
