@@ -1,6 +1,8 @@
 package com.example.haikel.tpsqlite;
 
-public class Contact {
+import java.io.Serializable;
+
+public class Contact implements Serializable {
 
     private int id;
     private String name, tel;

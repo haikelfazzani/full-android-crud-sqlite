@@ -44,7 +44,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnDelete.setOnClickListener(this);
         btnList.setOnClickListener(this);
 
-        myContact = gson.fromJson(getIntent().getStringExtra("contact"),Contact.class);
+        //myContact = gson.fromJson(getIntent().getStringExtra("contact"),Contact.class);
+        myContact = (Contact) getIntent().getSerializableExtra("contact");
 
         if(myContact != null) {
             name.setText(myContact.getName());
@@ -74,7 +75,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     startActivity(intent);
                 }
                 else {
-                    Toast.makeText(MainActivity.this, "An Error occurred during process", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "An Error occurred during process",
+                            Toast.LENGTH_SHORT).show();
                 }
                 break;
 
@@ -82,7 +84,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 myContact.setTel(tel.getText().toString());
                 //myContact.setTel(name.getText().toString());
                 dbHelper.updateContact(myContact);
-                Toast.makeText(MainActivity.this, "A contact is updated ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "A contact is updated ",
+                        Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.btnDelete:
@@ -98,7 +101,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         dbHelper.deleteContact(name.getText().toString());
                         name.setText("");
                         tel.setText("");
-                        Toast.makeText(MainActivity.this, "A contact is deleted ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "A contact is deleted ",
+                                Toast.LENGTH_SHORT).show();
                     }
                 }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
                     @Override

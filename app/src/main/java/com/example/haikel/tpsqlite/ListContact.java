@@ -67,8 +67,9 @@ public class ListContact extends AppCompatActivity implements View.OnClickListen
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
         if(position > -1) {
+            Object o =  gson.toJson(listContact.get(position));
             Intent myIntent = new Intent(ListContact.this, MainActivity.class);
-            myIntent.putExtra("contact", gson.toJson(listContact.get(position)));
+            myIntent.putExtra("contact", listContact.get(position));
             startActivity(myIntent);
         }
 
