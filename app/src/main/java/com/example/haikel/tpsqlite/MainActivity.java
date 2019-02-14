@@ -2,7 +2,6 @@ package com.example.haikel.tpsqlite;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,12 +10,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.haikel.tpsqlite.dao.DatabaseHandler;
+import com.example.haikel.tpsqlite.model.Contact;
 import com.google.gson.Gson;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText name, tel;
-    private Button btnAdd, btnUpdate, btnDelete, btnList;
+    private Button btnAdd, btnUpdate, btnDelete, btnList, btnListRecy;
     private Intent intent;
 
     private DatabaseHandler dbHelper;
@@ -38,11 +39,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnUpdate = findViewById(R.id.btnUpdate);
         btnDelete = findViewById(R.id.btnDelete);
         btnList = findViewById(R.id.btnList);
+        btnListRecy = findViewById(R.id.btnListRecy);
 
         btnAdd.setOnClickListener(this);
         btnUpdate.setOnClickListener(this);
         btnDelete.setOnClickListener(this);
         btnList.setOnClickListener(this);
+        btnListRecy.setOnClickListener(this);
 
         //myContact = gson.fromJson(getIntent().getStringExtra("contact"),Contact.class);
         myContact = (Contact) getIntent().getSerializableExtra("contact");
@@ -71,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 long l = dbHelper.addContact(contact);
 
                 if(l > -1) {
-                    intent = new Intent(MainActivity.this, ListContact.class);
+                    intent = new Intent(MainActivity.this, ListContactActivity.class);
                     startActivity(intent);
                 }
                 else {
@@ -114,8 +117,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 builder.create().show();
                 break;
 
+            case R.id.btnListRecy:
+                intent = new Intent(MainActivity.this, MyRecycleActivity.class);
+                startActivity(intent);
+                break;
+
             case R.id.btnList:
-                intent = new Intent(MainActivity.this, ListContact.class);
+                intent = new Intent(MainActivity.this, ListContactActivity.class);
                 startActivity(intent);
                 break;
         }

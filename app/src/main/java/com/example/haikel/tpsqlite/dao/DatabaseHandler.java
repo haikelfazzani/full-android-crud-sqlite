@@ -1,11 +1,12 @@
-package com.example.haikel.tpsqlite;
+package com.example.haikel.tpsqlite.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.Toast;
+
+import com.example.haikel.tpsqlite.model.Contact;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     private SQLiteDatabase myDB;
 
-    DatabaseHandler(Context ctx) {
+    public DatabaseHandler(Context ctx) {
         super(ctx, DATABASE_NAME, null, DATABASE_VERSION);
     }
 

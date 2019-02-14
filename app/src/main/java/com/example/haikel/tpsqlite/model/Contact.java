@@ -1,4 +1,4 @@
-package com.example.haikel.tpsqlite;
+package com.example.haikel.tpsqlite.model;
 
 import java.io.Serializable;
 

@@ -4,18 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ListContactActivity">
+    tools:context=".MyRecycleActivity"
+    android:orientation="vertical">
 
-    <ListView
-        android:id="@+id/listContact"
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="462dp"></ListView>
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        android:id="@+id/myRecy">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnBack"
-        android:text="MENU"/>
+    </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>
